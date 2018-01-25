@@ -111,6 +111,7 @@ Lors de la saisie du Pseudo, vous devrez afficher en temps réel dans le titre i
 
     var pseudoError = document.getElementsByClassName("pseudoError")[0];
     var ageError = document.getElementsByClassName("ageError")[0];
+    var string = document
     
 
     pseudo.addEventListener('input',function () {
@@ -126,7 +127,7 @@ Lors de la saisie du Pseudo, vous devrez afficher en temps réel dans le titre i
         pseudoError.style.display = "none";
     submit.disabled = false; 
     bienvenue.textContent = "Bienvenue " + pseudo.value + "!" ;
-    pseudo.push(pseudo.value);
+    
     }
    
 }
@@ -142,19 +143,33 @@ age.addEventListener('change',function () {
         
     ageError.style.display = "block";
     submit.disabled = true;
-    break;
 }
 else{
         ageError.style.display = "none";
-    submit.disabled = false;
-    members.age.push(age.value); 
+    submit.disabled = false; 
+    console.log(membres);
     
     }
 })
-submit.addEventListener('click', function(){
-    document.write(membres);
+
+
+inscriptionForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    var newEntry = {
+        pseudo : pseudo.value,
+        age    : age.value,
+        email  : email.value,
+        mdp    : mdp.value 
+    };
+membres.push(newEntry);
+var list = membres.pseudo.value;
+    for(let k = 0 ; k < membres.length ; k++){
+    document.write(membres[k].pseudo);
 }
-)
+})
+
+
+
 
 
 
