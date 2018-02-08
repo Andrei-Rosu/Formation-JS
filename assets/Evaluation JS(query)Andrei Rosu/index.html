@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Les Chatons</title>
+        <meta name="description" content="Adoption des chats">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+      <!--La nav-->
+        <nav>
+            <h1>OhMyCats !</h1>
+        </nav>
+      <!--Le slogan-->  
+        <div class="slogan">
+            <h2>Adoptez un chat trop bon !</h2>
+        </div>
+      <!--Le formulaire-->
+        <div class="row no-gutters main">
+            <div class="col-6 col-md-2 offset-md-2">
+                <form class="form">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Les chats à adopter</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected>Choix du chat</option>
+                        <option value="Sushi">Sushi</option>
+                        <option value="Maki">Maki</option>
+                        <option value="Sashimi">Sashimi</option>
+                        <option value="Yakitori">Yakitori</option>
+                        <option value="Onigri">Onigri</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Raison d'adoption</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="13" placeholder="Saisissez ici les raisons pour lesquelles vous souhaitez adopter ce chat...
+                                                                                                               "></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success my-1">Submit</button>
+                </form>
+            </div>
+      <!--Le slide-->      
+            <div class="col-12 col-sm-6 col-md-6 slidesh">
+                <div class="container">
+                    <div id="slides">
+                        <img src="img/chat_1.jpg" alt="Sushi le chat"  >
+                        <img src="img/chat_2.jpg" alt="Maki le chat">
+                        <img src="img/chat_3.jpg" alt="Sashimi le chat">
+                        <img src="img/chat_4.jpg" alt="Yakitori le chat">
+                        <img src="img/chat_5.jpg" alt="Onigiri le chat">
+                        <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+                        <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!--Le blabla-->
+        <div class="col-md-12 row no-gutters art">
+            <div class="col-md-12">
+                <h3>Nos chats à adopter</h3>
+            </div>
+
+            <div class="col-6 col-md-6 offset-md-2 art">
+                <article>Sed quid est quod in hac causa maxime homines admirentur et reprehendant meum consilium, cum ego idem antea multa decreverim, que magis ad hominis dignitatem quam ad rei publicae necessitatem pertinerent? Supplicationem quindecim dierum decrevi sententia mea. Rei publicae satis erat tot dierum quot C. Mario ; dis immortalibus non erat exigua eadem gratulatio quae ex maximis bellis. Ergo ille cumulus dierum hominis est dignitati tributus.
+
+                    Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit, cunctatio absit; consilium vero dare audeamus libere. Plurimum in amicitia amicorum bene suadentium valeat auctoritas, eaque et adhibeatur ad monendum non modo aperte sed etiam acriter, si res postulabit, et adhibitae pareatur.
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <figure>
+                    <img class="img-responsive" src="img/tete-chat.png" alt="logo tete de chat">
+                </figure>
+            </div>
+        </div>
+
+
+
+        <!-- SlidesJS Required: Link to jQuery -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <!-- End SlidesJS Required -->
+
+        <!-- SlidesJS Required: Link to jquery.slides.js -->
+        <script src="js/jquery.slides.min.js"></script>
+        <!-- End SlidesJS Required -->
+
+        <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+        <script>
+            $(function() {
+                $('#slides').slidesjs({
+                    width: 940,
+                    height: 528,
+                    navigation: false
+                });
+            });
+        </script>
+
+    </body>
+</html>
