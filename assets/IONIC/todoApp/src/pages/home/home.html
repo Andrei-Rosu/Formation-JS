@@ -7,8 +7,18 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-list>
+    <ion-item *ngFor="let tache of taches">
+      <ion-label>{{tache.titre}}</ion-label>
+      <ion-checkbox checked="{{tache.status}}"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="active">
+      <ion-label><ion-icon name="add"></ion-icon>     New task</ion-label>
+
+      <ion-input name="titre" [(ngModel)]="task.titre"(ionBlur)="saveTask()" type="text"></ion-input>
+
+    </ion-item>
+  </ion-list>
+
 </ion-content>
