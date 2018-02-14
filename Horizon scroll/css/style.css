@@ -1,0 +1,200 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+section, header, footer, nav, div, span, ul, li, a {
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: darkgrey;
+    color: aliceblue;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+header nav {
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+header ul li {
+    display: inline-block;
+    padding: 0 20px;
+    float: right;
+}
+
+header ul a {
+    font-weight: 700;
+    text-decoration: none;
+    color: #4d4d4d;
+    height: 50px;
+    display: block;
+    position: relative;
+}
+
+header ul a span {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    justify-self: right;
+}
+
+section {
+    float: left;
+    display: block;
+    height: 100%;
+    padding: 75px 0 0 0;
+    margin: 0;
+}
+
+#section-section1 {
+    box-sizing: border-box;
+    color: aliceblue;
+    padding: 50px;
+    font-size: 23px;
+    font-family: 'Alegreya Sans', sans-serif;
+    padding-top: 200px;
+    background: #000000;
+
+}
+
+#section-section1 p {
+    background: black;
+    position: absolute;
+    z-index: 10;
+    text-align: right;
+
+}
+
+
+#section-section2 {
+     background: black;
+    color: aliceblue;
+    padding: 50px;
+    font-size: 23px;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+#section-section3 {
+    background: black;
+    color: aliceblue;
+    padding: 50px;
+    font-size: 23px;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+#section-section4 {
+    background: black;
+    color: aliceblue;
+    padding: 50px;
+    font-size: 23px;
+    font-family: 'Quattrocento,serif';
+}
+
+.horizon-prev, .horizon-next {
+    position: fixed;
+    top: 50%;
+    margin-top: -24px;
+    z-index: 9999;
+}
+
+.horizon-prev {
+    left: 20px;
+}
+
+.horizon-next {
+    right: 20px;
+}
+h1, h2{
+    font-family: 'Quattrocento,serif';
+    font-weight: 100;
+    padding:40px;
+    background: black;
+
+}
+body{
+    background: white;
+}
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+html{
+    min-height: 100%;
+    overflow: hidden;
+}
+body{
+    height: calc(100vh - 8em);
+    padding: 4em;
+    color: rgba(255,255,255,.75);
+    font-family: 'Anonymous Pro', monospace;
+    background-color: rgb(25,25,25);
+}
+/*typewriter*/
+.typer {
+    position: relative;
+    min-height: 2ex;
+}
+.typer::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 0.1em;
+    height: 1.1em;
+    background-color: currentColor;
+    margin-left: 0.1em;
+}
+.cursor-block::after {
+    width: 0.9ex;
+}
+.cursor-soft::after {
+    animation: softblink 0.7s infinite;
+}
+.cursor-hard::after {
+    animation: hardblink 0.7s infinite;
+}
+.no-cursor::after {
+    content: none;
+}
+@keyframes softblink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes hardblink {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.white-space {
+    white-space: pre-wrap;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Quattrocento" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="jquery.touchSwipe.js"></script>
+        <script type="text/javascript" src="jquery.horizonScroll.js"></script>
+
+        <style>*{margin:0;padding:0;z-index:0;line-height:1;overflow:hidden;}div{width:1em;position:absolute;}</style><script>
+        w=window;n=w.innerWidth;m=w.innerHeight;d=document;q="px";
+        function z(a,b){return Math.floor(Math.random()*(b-a)+a)}f=" 0123456789";for(i=0;i<45;i++)f+=String.fromCharCode(i+65393);
+        function g(){var actions=[]; for(i=0;i<90;i++){r=d.createElement("div");
+                                       for(j=z(20,50);j;j--){x=d.createElement("pre");
+                                                             y=d.createTextNode(f[z(0,56)]);
+                                                                                      x.appendChild(y);x.style.opacity=0;
+                                                                                      r.appendChild(x)}r.id="r"+i;r.t=z(-99,0);
+                                       with(r.style){left=z(0,n)+q;top=z(-m,0)+q;
+                                                     fontSize=z(10,25)+q}d.body.appendChild(r);actions.push(setInterval("u("+i+")",z(60,120)));} return actions;}
+        function u(j){e=d.getElementById("r"+j);
+                      c=e.childNodes;t=e.t+1;if((v=t-c.length-50)>0){if((e.style.opacity=1-v/32)==0)
+                      {for(f in c)if(c[f].style)c[f].style.opacity=0;
+                                                                                                     with(e.style){left=z(0,n)+q;top=z(-m/2,m/2)+q;opacity=1}t=-50}}e.t=t;if(t<0||t>c.length+12)return;
+                      for(f=t;f&&f>t-12;f--){s=1-(t-f)/16;if(f<c.length&&c[f].style){c[f].style.opacity=s;
+                                                                                    
+                                                                                   
+                                                                                    
+                                                                                    }
+                                                  
+                                      
+                                            }
+              
+                      
+                     }
+        
+        function start() {
+           var actions = g();
+            setTimeout(function(){
+               for(action of  actions) clearInterval(action);
+            }, 8000);
+       }      
+        
+        </script>
+    </head>
+    <body text=white bgcolor=#000 onload="start()">
+        <header data-role="header" id="header">
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <a href="#section-section1"><span>A propos de moi</span></a>
+                    </li>
+                    <li>
+                        <a href="#section-section2"><span>Compétences</span></a>
+                    </li>
+                    <li>
+                        <a href="#section-section3"><span>Portfolio</span></a>
+                    </li>
+                    <li>
+                        <a href="#section-section4"><span>Contact</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section data-role="section" id="section-section1">
+            <h1>Andrei Rosu - développeur web</h1> 
+            <p>Fouilleur enthousiaste dans les secrets du World Wide Web.<br><br>Gestionnaire expérimenté et coordinateur avec une vaste compréhension multiculturelle.<br>
+
+
+                Junior Web Developper ... pour l'instant ...<br>J'aime tirer a l'arc traditionnel  quand je ne suis pas en train de coder.<br>
+
+                En passant, coder pour maintenant signifie beaucoup de piratage bien intentionné.<br>
+                Je vais sur n'importe quel site que j'aime, je regarde le code source, et je copie ce que j'aime<br>
+                Je colle sur mon écran et je commence à modifier les paramètres en essayant de comprendre ce que chaque chose fait.<br>
+                Bien sûr, il y a beaucoup de frustration, mais j'aime beaucoup ce nouveau monde.<br><br><br><br><br><br>
+               <br><br><br><br>
+            </p>
+        </section>
+        <section data-role="section" id="section-section2">
+            <h1></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidu posuere ut placerat. </p>
+        </section>
+        <section data-role="section" id="section-section3">
+            <h2>Portfolio</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt id mi eu sagittis. Ut eu gravida magna, id posuere est. Integer rutrum tellus vel leo dignissim rutrum. Etiam mattis eu ante ut placerat. </p>
+        </section>
+        <section data-role="section" id="section-section4">
+            <h2></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt id mi eu sagittis. Ut eu gravida magna, id posuere est. Integer rutrum tellus vel leo dignissim rutrum. Etiam mattis eu ante ut placerat. </p>
+        </section>
+
+        <footer data-role="footer" id="footer"></footer>
+
+        <script type="text/javascript">
+
+            $('section').horizon();
+
+
+
+            $(document).on('click', '.go-to-2', function () {
+                $(document).horizon('scrollTo', 'section-section2');
+            });
+        </script>
+    <script type="text/javascript" src="typer.js"></script>
+
+    </body>
+</html>
