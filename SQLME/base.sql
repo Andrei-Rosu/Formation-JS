@@ -514,8 +514,8 @@ MariaDB [entreprise]> SELECT * FROM employes WHERE service ='informatique' OR se
 
 -- GROUP BY
 
-SELECT service, COUNT(*)AS 'nombre d\'employes' from employes;
-MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre d\'employes' from employes;
+SELECT service, COUNT(*)AS 'nombre employes' from employes;
+MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre employes' from employes;
 +-----------+-------------------+
 | service   | nombre d'employes |
 +-----------+-------------------+
@@ -526,8 +526,8 @@ MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre d\'employes' from emplo
 
 -- erronne
 
-SELECT service, COUNT(*)AS 'nombre d\'employes' from employes GROUP BY service;
-MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre d\'employes' from employes GROUP BY service;
+SELECT service, COUNT(*)AS 'nombre employes' from employes GROUP BY service;
+MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre employes' from employes GROUP BY service;
 +---------------+-------------------+
 | service       | nombre d'employes |
 +---------------+-------------------+
@@ -542,6 +542,11 @@ MariaDB [entreprise]> SELECT service, COUNT(*)AS 'nombre d\'employes' from emplo
 | secretariat   |                 3 |
 +---------------+-------------------+
 9 rows in set (0.00 sec)
+-- Pour mettre une condition sur GROUP BY
+
+SELECT service, COUNT(*)AS 'nombre employes' from employes GROUP BY service HAVING COUNT(*) >=2;
+
+
 
 
 ########################################################################################################
@@ -714,68 +719,283 @@ DELETE FROM employes;
 
 
 ########################################################################################################
---# EXERCICES:
+--# EXERCICE:
+
+
+
 --# 1 - Afficher la profession de l'employé 547
+SELECT service FROM employes WHERE id_employes=547;
+MariaDB [entreprise]> SELECT service FROM employes WHERE id_employes=547;
++------------+
+| service    |
++------------+
+| commercial |
++------------+
+1 row in set (0.00 sec)
+
+
 --# 2 - Afficher la date d'embauche d'Amandine
---# 3 - Afficher le nom de famille de Guillaume
---# 4 - Afficher le nombre de personnes ayant un id commençant par le chiffre 5
---# 5 - Afficher le nombre de commerciaux
---# 6 - Afficher le salaire moyen des informaticiens
---# 7 - Afficher les 5 premiers employés après avoir classé leur nom par ordre alphabétique
---# 8 - Afficher le coût des commerciaux sur une année
---# 9 - Afficher le salaire moyen par service
---# 10 - Afficher le nombre de recrutement sur l'année 2010 avec un alias (AS)
---# 11 - Afficher le salaire moyen des employes ayant été recrutés sur la période de 2005 à 2007 inclu
---# 12 - Afficher le nombre de différent service
---# 13 - Afficher tous les employés sauf ceux des services production et secrétariat
---# 14 - Afficher conjointement le nombre de femme et le nombre d'homme
---# 15 - Qui a été embauché en dernier 
---# 16 - Afficher les informations de l'employé du service commercial ayant le salaire le plus élevé.
---# 17 - Afficher le prenom du comptable ayant le salaire le plus élevé
---# 18 - Afficher les commerciaux ayant été recrut" avant 205 de sexe masculin et gagnant un salaire supérieur à 2500
---# 19 - Afficher le prenom de l'informaticien ayant été recruté en premier
---# 20 - Augmenter chaque employé de 100€
-SELECT service FROM employes WHERE =547;
 SELECT date_embauche FROM employes WHERE prenom='Amandine';
-SELECT nom FROM employes WHERE prenom='Guillaume';
-SELECT COUNT(*) AS 'Employaux avec Id commençant par 5'FROM employes WHERE id_employes LIKE "5%";
-SELECT COUNT(*) AS 'Commerciaux' FROM employes WHERE service='commercial';
-SELECT AVG(salaire) AS 'Salaire Moyen' from employes WHERE service='informatique';
-SELECT * FROM employes ORDER BY nom LIMIT 0,5;
-SELECT SUM(salaire*12) AS 'Cout commerciaux' FROM employes WHERE service='commercial' ;
-SELECT service,AVG(salaire) FROM employes GROUP BY service ORDER BY salaire;
-SELECT COUNT(*) AS 'Embauches en 2010' FROM employes WHERE date_embauche LIKE "%2010%";
---# 11 - Afficher le salaire moyen des employes ayant été recrutés sur la période de 2005 à 2007 inclu
+MariaDB [entreprise]> SELECT date_embauche FROM employes WHERE prenom='Amandine';
++---------------+
+| date_embauche |
++---------------+
+| 2010-01-23    |
++---------------+
+1 row in set (0.00 sec)
 
+
+--# 3 - Afficher le nom de famille de Guillaume
+SELECT nom FROM employes WHERE prenom='Guillaume';
+MariaDB [entreprise]> SELECT nom FROM employes WHERE prenom='Guillaume';
++--------+
+| nom    |
++--------+
+| Miller |
++--------+
+1 row in set (0.00 sec)
+
+
+--# 4 - Afficher le nombre de personnes ayant un id commençant par le chiffre 5
+SELECT COUNT(*) AS 'Employaux avec Id commençant par 5'FROM employes WHERE id_employes LIKE "5%";
+MariaDB [entreprise]> SELECT COUNT(*) AS 'Employaux avec Id commençant par 5'FROM employes WHERE id_employes LIKE "5%";
++------------------------------------+
+| Employaux avec Id commençant par 5 |
++------------------------------------+
+|                                  3 |
++------------------------------------+
+1 row in set (0.00 sec)
+
+
+--# 5 - Afficher le nombre de commerciaux
+SELECT COUNT(*) AS 'Commerciaux' FROM employes WHERE service='commercial';
+MariaDB [entreprise]> SELECT COUNT(*) AS 'Commerciaux' FROM employes WHERE service='commercial';
++-------------+
+| Commerciaux |
++-------------+
+|           6 |
++-------------+
+
+
+--# 6 - Afficher le salaire moyen des informaticiens
+SELECT AVG(salaire) AS 'Salaire Moyen' from employes WHERE service='informatique';
+MariaDB [entreprise]> SELECT AVG(salaire) AS 'Salaire Moyen' from employes WHERE service='informatique';
++---------------+
+| Salaire Moyen |
++---------------+
+|     2083.3333 |
++---------------+
+1 row in set (0.00 sec)
+
+
+--# 7 - Afficher les 5 premiers employés après avoir classé leur nom par ordre alphabétique
+SELECT * FROM employes ORDER BY nom LIMIT 0,5;
+MariaDB [entreprise]> SELECT * FROM employes ORDER BY nom LIMIT 0,5;
++-------------+---------+----------+------+--------------+---------------+---------+
+| id_employes | prenom  | nom      | sexe | service      | date_embauche | salaire |
++-------------+---------+----------+------+--------------+---------------+---------+
+|         592 | Laura   | Blanchet | f    | direction    | 2005-06-09    |    4600 |
+|         854 | Daniel  | Chevel   | m    | informatique | 2011-09-28    |    1800 |
+|         547 | Melanie | Collier  | f    | commercial   | 2004-09-08    |    3200 |
+|         699 | Julien  | Cottet   | m    | secretariat  | 2007-01-18    |    1490 |
+|         739 | Thierry | Desprez  | m    | secretariat  | 2009-11-17    |    1600 |
++-------------+---------+----------+------+--------------+---------------+---------+
+5 rows in set (0.00 sec)
+
+--# 8 - Afficher le coût des commerciaux sur une année--# 8 - Afficher le coût des commerciaux sur une année
+SELECT SUM(salaire*12) AS 'Cout commerciaux' FROM employes WHERE service='commercial' ;
+MariaDB [entreprise]> SELECT SUM(salaire*12) AS 'Cout commerciaux' FROM employes WHERE service='commercial'
+    -> ;
++------------------+
+| Cout commerciaux |
++------------------+
+|           191400 |
++------------------+
+1 row in set (0.00 sec)
+
+
+--# 9 - Afficher le salaire moyen par service
+SELECT service,AVG(salaire) FROM employes GROUP BY service ORDER BY salaire;
+MariaDB [entreprise]> SELECT service,AVG(salaire) FROM employes GROUP BY service ORDER BY salaire;
++---------------+--------------+
+| service       | AVG(salaire) |
++---------------+--------------+
+| communication |    1600.0000 |
+| secretariat   |    1596.6667 |
+| assistant     |    1875.0000 |
+| production    |    2325.0000 |
+| comptabilite  |    2000.0000 |
+| informatique  |    2083.3333 |
+| commercial    |    2658.3333 |
+| juridique     |    3300.0000 |
+| direction     |    4850.0000 |
++---------------+--------------+
+9 rows in set (0.00 sec)
+
+--# 10 - Afficher le nombre de recrutement sur l'année 2010 avec un alias (AS)
+SELECT COUNT(*) AS 'Embauches en 2010' FROM employes WHERE date_embauche LIKE "%2010%";
+MariaDB [entreprise]> SELECT COUNT(*) AS 'Embauches en 2010' FROM employes WHERE date_embauche LIKE "%2010%";
++-------------------+
+| Embauches en 2010 |
++-------------------+
+|                 2 |
++-------------------+
+1 row in set (0.00 sec)
+
+
+
+--# 11 - Afficher le salaire moyen des employes ayant été recrutés sur la période de 2005 à 2007 inclu
 SELECT AVG(salaire) AS 'Salaire Moyen embauches 2007-2010' from employes WHERE date_embauche BETWEEN "2007-01-01" AND "2010-01-01";
+MariaDB [entreprise]> SELECT AVG(salaire) AS 'Salaire Moyen embauches 2007-2010' from employes WHERE date_embauche BETWEEN "2007-01-01" AND "2010-01-01";
++-----------------------------------+
+| Salaire Moyen embauches 2007-2010 |
++-----------------------------------+
+|                         1730.0000 |
++-----------------------------------+
+1 row in set (0.00 sec)
+
 
 --# 12 - Afficher le nombre de différent service
-
-
-
 SELECT COUNT(DISTINCT service) AS 'Services' FROM employes;
+MariaDB [entreprise]> SELECT COUNT(DISTINCT service) AS 'Services' FROM employes;
++----------+
+| Services |
++----------+
+|        9 |
++----------+
+1 row in set (0.00 sec)
+
 
 --# 13 - Afficher tous les employés sauf ceux des services production et secrétariat
-
 SELECT * FROM employes WHERE service !="production" AND service !="secretariat";
+MariaDB [entreprise]> SELECT * FROM employes WHERE service !="production" AND service !="secretariat";
++-------------+-------------+----------+------+---------------+---------------+---------+
+| id_employes | prenom      | nom      | sexe | service       | date_embauche | salaire |
++-------------+-------------+----------+------+---------------+---------------+---------+
+|         350 | Jean-pierre | Laborde  | m    | direction     | 1999-12-09    |    5100 |
+|         388 | Clement     | Gallet   | m    | commercial    | 2000-01-15    |    2400 |
+|         415 | Thomas      | Winter   | m    | commercial    | 2000-05-03    |    3650 |
+|         509 | Fabrice     | Grand    | m    | comptabilite  | 2003-02-20    |    2000 |
+|         547 | Melanie     | Collier  | f    | commercial    | 2004-09-08    |    3200 |
+|         592 | Laura       | Blanchet | f    | direction     | 2005-06-09    |    4600 |
+|         627 | Guillaume   | Miller   | m    | commercial    | 2006-07-02    |    2000 |
+|         655 | Celine      | Perrin   | f    | commercial    | 2006-09-10    |    2800 |
+|         701 | Mathieu     | Vignal   | m    | informatique  | 2008-12-03    |    2100 |
+|         780 | Amandine    | Thoyer   | f    | communication | 2010-01-23    |    1600 |
+|         802 | Damien      | Durand   | m    | informatique  | 2010-07-05    |    2350 |
+|         854 | Daniel      | Chevel   | m    | informatique  | 2011-09-28    |    1800 |
+|         876 | Nathalie    | Martin   | f    | juridique     | 2012-01-12    |    3300 |
+|         933 | Emilie      | Sennard  | f    | commercial    | 2014-09-11    |    1900 |
+|         990 | Stephanie   | Lafaye   | f    | assistant     | 2015-06-02    |    1875 |
++-------------+-------------+----------+------+---------------+---------------+---------+
+15 rows in set (0.00 sec)
+
 
 --# 14 - Afficher conjointement le nombre de femme et le nombre d'homme
+SELECT sexe,COUNT(*)FROM employes GROUP BY sexe;
+MariaDB [entreprise]> SELECT sexe,COUNT(*)FROM employes GROUP BY sexe;
++------+----------+
+| sexe | COUNT(*) |
++------+----------+
+| m    |       11 |
+| f    |        9 |
++------+----------+
+2 rows in set (0.00 sec)
 
-SELECT sexe,COUNT(*)FROM employes WHERE sexe="f" OR sexe="m" GROUP BY sexe;
+
 --# 15 - Qui a été embauché en dernier
-SELECT * FROM employes ORDER by date_embauche DESC LIMIT 0,1;
+SELECT * FROM employes ORDER BY date_embauche DESC LIMIT 0,1;
+MariaDB [entreprise]> SELECT * FROM employes ORDER BY date_embauche DESC LIMIT 0,1
+    -> ;
++-------------+-----------+--------+------+-----------+---------------+---------+
+| id_employes | prenom    | nom    | sexe | service   | date_embauche | salaire |
++-------------+-----------+--------+------+-----------+---------------+---------+
+|         990 | Stephanie | Lafaye | f    | assistant | 2015-06-02    |    1875 |
++-------------+-----------+--------+------+-----------+---------------+---------+
+1 row in set (0.00 sec)
+
 
 --# 16 - Afficher les informations de l'employé du service commercial ayant le salaire le plus élevé.
-
 SELECT * FROM employes WHERE service="commercial" ORDER by salaire desc LIMIT 0,5;
+MariaDB [entreprise]> SELECT * FROM employes WHERE service="commercial" ORDER by salaire desc LIMIT 0,5;
++-------------+-----------+---------+------+------------+---------------+---------+
+| id_employes | prenom    | nom     | sexe | service    | date_embauche | salaire |
++-------------+-----------+---------+------+------------+---------------+---------+
+|         415 | Thomas    | Winter  | m    | commercial | 2000-05-03    |    3650 |
+|         547 | Melanie   | Collier | f    | commercial | 2004-09-08    |    3200 |
+|         655 | Celine    | Perrin  | f    | commercial | 2006-09-10    |    2800 |
+|         388 | Clement   | Gallet  | m    | commercial | 2000-01-15    |    2400 |
+|         627 | Guillaume | Miller  | m    | commercial | 2006-07-02    |    2000 |
++-------------+-----------+---------+------+------------+---------------+---------+
+5 rows in set (0.00 sec)
+
 
 --# 17 - Afficher le prenom du comptable ayant le salaire le plus élevé
-
 SELECT * FROM employes WHERE service="comptabilite" ORDER by salaire desc LIMIT 0,1;
+MariaDB [entreprise]> SELECT * FROM employes WHERE service="comptabilite" ORDER by salaire desc LIMIT 0,1;
++-------------+---------+-------+------+--------------+---------------+---------+
+| id_employes | prenom  | nom   | sexe | service      | date_embauche | salaire |
++-------------+---------+-------+------+--------------+---------------+---------+
+|         509 | Fabrice | Grand | m    | comptabilite | 2003-02-20    |    2000 |
++-------------+---------+-------+------+--------------+---------------+---------+
+1 row in set (0.00 sec)
+
 
 --# 18 - Afficher les commerciaux ayant été recrut" avant 205 de sexe masculin et gagnant un salaire supérieur à 2500
-
 SELECT * FROM employes WHERE service ="commercial" AND date_embauche < "2005-01-01" AND sexe="m" AND salaire >2500;
+MariaDB [entreprise]> SELECT * FROM employes WHERE service ="commercial" AND date_embauche < "2005-01-01" AND sexe="m" AND salaire >2500;
++-------------+--------+--------+------+------------+---------------+---------+
+| id_employes | prenom | nom    | sexe | service    | date_embauche | salaire |
++-------------+--------+--------+------+------------+---------------+---------+
+|         415 | Thomas | Winter | m    | commercial | 2000-05-03    |    3650 |
++-------------+--------+--------+------+------------+---------------+---------+
+1 row in set (0.00 sec)
+
+
+--# 19 - Afficher le prenom de l'informaticien ayant été recruté en premier
+SELECT prenom,service FROM employes WHERE service="informatique" AND date_embauche < CURDATE() ORDER by date_embauche DESC LIMIT 0,1;
+MariaDB [entreprise]> SELECT * FROM employes WHERE service="informatique" AND date_embauche < CURDATE() ORDER by date_embauche DESC LIMIT 0,1;
++-------------+--------+--------+------+--------------+---------------+---------+
+| id_employes | prenom | nom    | sexe | service      | date_embauche | salaire |
++-------------+--------+--------+------+--------------+---------------+---------+
+|         854 | Daniel | Chevel | m    | informatique | 2011-09-28    |    1800 |
++-------------+--------+--------+------+--------------+---------------+---------+
+1 row in set (0.00 sec)
+
+
+--# 20 - Augmenter chaque employé de 100€
+UPDATE employes SET salaire=salaire+100;
+MariaDB [entreprise]> UPDATE employes SET salaire=salaire+100;
+Query OK, 20 rows affected (0.00 sec)
+Rows matched: 20  Changed: 20  Warnings: 0
+MariaDB [entreprise]> SELECT * FROM employes ;
++-------------+-------------+----------+------+---------------+---------------+---------+
+| id_employes | prenom      | nom      | sexe | service       | date_embauche | salaire |
++-------------+-------------+----------+------+---------------+---------------+---------+
+|         350 | Jean-pierre | Laborde  | m    | direction     | 1999-12-09    |    5100 |
+|         388 | Clement     | Gallet   | m    | commercial    | 2000-01-15    |    2400 |
+|         415 | Thomas      | Winter   | m    | commercial    | 2000-05-03    |    3650 |
+|         417 | Chloe       | Dubar    | f    | production    | 2001-09-05    |    2000 |
+|         491 | Elodie      | Fellier  | f    | secretariat   | 2002-02-22    |    1700 |
+|         509 | Fabrice     | Grand    | m    | comptabilite  | 2003-02-20    |    2000 |
+|         547 | Melanie     | Collier  | f    | commercial    | 2004-09-08    |    3200 |
+|         592 | Laura       | Blanchet | f    | direction     | 2005-06-09    |    4600 |
+|         627 | Guillaume   | Miller   | m    | commercial    | 2006-07-02    |    2000 |
+|         655 | Celine      | Perrin   | f    | commercial    | 2006-09-10    |    2800 |
+|         699 | Julien      | Cottet   | m    | secretariat   | 2007-01-18    |    1490 |
+|         701 | Mathieu     | Vignal   | m    | informatique  | 2008-12-03    |    2100 |
+|         739 | Thierry     | Desprez  | m    | secretariat   | 2009-11-17    |    1600 |
+|         780 | Amandine    | Thoyer   | f    | communication | 2010-01-23    |    1600 |
+|         802 | Damien      | Durand   | m    | informatique  | 2010-07-05    |    2350 |
+|         854 | Daniel      | Chevel   | m    | informatique  | 2011-09-28    |    1800 |
+|         876 | Nathalie    | Martin   | f    | juridique     | 2012-01-12    |    3300 |
+|         900 | Benoit      | Lagarde  | m    | production    | 2013-01-03    |    2650 |
+|         933 | Emilie      | Sennard  | f    | commercial    | 2014-09-11    |    1900 |
+|         990 | Stephanie   | Lafaye   | f    | assistant     | 2015-06-02    |    1875 |
++-------------+-------------+----------+------+---------------+---------------+---------+
+20 rows in set (0.00 sec)
+
+
 
 
 
